@@ -12,7 +12,7 @@ export default function ItemList({
         <li key={grocery.id}>
           <Item
             grocery={grocery}
-            onUpdate={onUpdateGrocery}
+            onChange={onUpdateGrocery}
             onDelete={onDeleteGrocery}
           />
         </li>

@@ -7,29 +7,32 @@ const nextId = 3;
 const initialGroceries = [
   {
     id: 0,
-    food: (
-      <span role="img" aria-label="hooch">
-        🥃
-      </span>
-    ),
+    // food: (
+    //   <span role="img" aria-label="hooch">
+    //     '🥃'
+    //   </span>
+    // ),
+    food: 'yams',
     done: false,
   },
   {
     id: 1,
-    food: (
-      <span role="img" aria-label="honey">
-        🍯
-      </span>
-    ),
+    // food: (
+    //   <span role="img" aria-label="honey">
+    //     '🍯'
+    //   </span>
+    // ),
+    food: 'spams',
     done: false,
   },
   {
     id: 2,
-    food: (
-      <span role="img" aria-label="havarti">
-        🧀
-      </span>
-    ),
+    // food: (
+    //   <span role="img" aria-label="havarti">
+    //     '🧀'
+    //   </span>
+    // ),
+    food: 'spams',
     done: false,
   },
 ];
