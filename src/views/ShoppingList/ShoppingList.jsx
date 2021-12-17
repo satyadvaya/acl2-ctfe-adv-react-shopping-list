@@ -1,13 +1,46 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import AddItem from '../../components/AddItem/AddItem';
 import ItemList from '../../components/ItemList/ItemList';
 
+const nextId = 3;
+
+const initialGroceries = [
+  {
+    id: 0,
+    food: (
+      <span role="img" aria-label="hooch">
+        🥃
+      </span>
+    ),
+    done: false,
+  },
+  {
+    id: 1,
+    food: (
+      <span role="img" aria-label="honey">
+        🍯
+      </span>
+    ),
+    done: false,
+  },
+  {
+    id: 2,
+    food: (
+      <span role="img" aria-label="havarti">
+        🧀
+      </span>
+    ),
+    done: false,
+  },
+];
+
 function groceriesReducer(groceries, action) {
   switch (action.type) {
-    case 'added': {
+    case 'add': {
       return [...groceries, { id: action.id, food: action.food, done: false }];
     }
-    case 'updated': {
+
+    case 'update': {
       return groceries.map((grocery) => {
         if (grocery.id === action.task.id) {
           return action.task;
@@ -15,20 +48,51 @@ function groceriesReducer(groceries, action) {
         return grocery;
       });
     }
-    case 'deleted': {
+
+    case 'delete': {
       return groceries.filter((grocery) => grocery.id !== action.id);
     }
+
     default: {
-      throw Error(`Unknown action: ${action.type}`);
+      throw new Error(`Unknown action: ${action.type}`);
     }
   }
 }
 
-export default function ShoppingList() {
+export default function Shopping() {
+  const [groceries, dispatch] = useReducer(groceriesReducer, initialGroceries);
+
+  const handleAddGrocery = (food) => {
+    dispatch({
+      type: 'add',
+      id: nextId + 1,
+      food,
+    });
+  };
+
+  const handleUpdateGrocery = (task) => {
+    dispatch({
+      type: 'update',
+      task,
+    });
+  };
+
+  const handleDeleteGrocery = (taskId) => {
+    dispatch({
+      type: 'delete',
+      id: taskId,
+    });
+  };
+
   return (
     <>
-      <AddItem />
-      <ItemList />
+      <h1>Winter Is Coming — Time to Stockpile the Larder!</h1>
+      <AddItem onAddGrocery={handleAddGrocery} />
+      <ItemList
+        groceries={groceries}
+        onUpdateGrocery={handleUpdateGrocery}
+        onDeleteGrocery={handleDeleteGrocery}
+      />
     </>
   );
 }
