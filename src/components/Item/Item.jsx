@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 
-export default function Item({ grocery, onUpdate, onDelete }) {
+export default function Item({
+  grocery,
+  handleUpdateGrocery,
+  handleDeleteGrocery,
+}) {
+  console.log(typeof grocery.food);
   const [isEditing, setIsEditing] = useState(false);
   let groceryContent;
   if (isEditing) {
@@ -9,7 +14,7 @@ export default function Item({ grocery, onUpdate, onDelete }) {
         <input
           value={grocery.food}
           onChange={(event) => {
-            onUpdate({
+            handleUpdateGrocery({
               ...grocery,
               food: event.target.value,
             });
@@ -22,6 +27,9 @@ export default function Item({ grocery, onUpdate, onDelete }) {
   } else {
     groceryContent = (
       <>
+        <p role="img" aria-label={grocery.food}>
+          {grocery.food}
+        </p>
         <button type="button" onClick={() => setIsEditing(true)}>
           Edit
         </button>
@@ -34,14 +42,14 @@ export default function Item({ grocery, onUpdate, onDelete }) {
         type="checkbox"
         checked={grocery.done}
         onChange={(event) => {
-          onUpdate({
+          handleUpdateGrocery({
             ...grocery,
             done: event.target.checked,
           });
         }}
       />
       {groceryContent}
-      <button type="button" onClick={() => onDelete(grocery.id)}>
+      <button type="button" onClick={() => handleDeleteGrocery(grocery.id)}>
         Delete
       </button>
     </div>

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-export default function AddItem({ onAddGrocery }) {
+export default function AddItem({ handleAdd }) {
   const [food, setFood] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setFood('');
-    onAddGrocery(food);
+    handleAdd(food);
   };
 
   return (

@@ -7,32 +7,19 @@ const nextId = 3;
 const initialGroceries = [
   {
     id: 0,
-    // food: (
-    //   <span role="img" aria-label="hooch">
-    //     '🥃'
-    //   </span>
-    // ),
-    food: 'yams',
+    food: 'Hooch 🥃',
     done: false,
   },
   {
     id: 1,
-    // food: (
-    //   <span role="img" aria-label="honey">
-    //     '🍯'
-    //   </span>
-    // ),
-    food: 'spams',
+    food: 'Honey 🍯',
+
     done: false,
   },
   {
     id: 2,
-    // food: (
-    //   <span role="img" aria-label="havarti">
-    //     '🧀'
-    //   </span>
-    // ),
-    food: 'spams',
+    food: 'Havarti 🧀',
+    // food: 'hams',
     done: false,
   },
 ];
@@ -89,12 +76,12 @@ export default function Shopping() {
 
   return (
     <>
-      <h1>Winter Is Coming — Time to Stockpile the Larder!</h1>
-      <AddItem onAddGrocery={handleAddGrocery} />
+      <h1>Winter Is Coming — Keep Your Head, and Stockpile the Larder!</h1>
+      <AddItem handleAdd={handleAddGrocery} />
       <ItemList
         groceries={groceries}
-        onUpdateGrocery={handleUpdateGrocery}
-        onDeleteGrocery={handleDeleteGrocery}
+        handleUpdate={handleUpdateGrocery}
+        handleDelete={handleDeleteGrocery}
       />
     </>
   );

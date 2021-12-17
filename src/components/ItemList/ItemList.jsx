@@ -1,19 +1,15 @@
 import React from 'react';
 import Item from '../Item/Item';
 
-export default function ItemList({
-  groceries,
-  onUpdateGrocery,
-  onDeleteGrocery,
-}) {
+export default function ItemList({ groceries, handleUpdate, handleDelete }) {
   return (
     <ul>
       {groceries.map((grocery) => (
         <li key={grocery.id}>
           <Item
             grocery={grocery}
-            onChange={onUpdateGrocery}
-            onDelete={onDeleteGrocery}
+            handleUpdateGrocery={handleUpdate}
+            handleDeleteGrocery={handleDelete}
           />
         </li>
       ))}
