@@ -13,13 +13,11 @@ const initialGroceries = [
   {
     id: 1,
     food: 'Honey 🍯',
-
     done: false,
   },
   {
     id: 2,
     food: 'Havarti 🧀',
-    // food: 'hams',
     done: false,
   },
 ];
@@ -27,7 +25,14 @@ const initialGroceries = [
 function groceriesReducer(groceries, action) {
   switch (action.type) {
     case 'add': {
-      return [...groceries, { id: action.id, food: action.food, done: false }];
+      return [
+        ...groceries,
+        {
+          id: action.id,
+          food: action.food,
+          done: false,
+        },
+      ];
     }
 
     case 'update': {
@@ -76,7 +81,7 @@ export default function Shopping() {
 
   return (
     <>
-      <h1>Winter Is Coming — Keep Your Head, and Stockpile the Larder!</h1>
+      <h2>Winter Is Coming — Keep Your Head, and Stockpile the Larder!</h2>
       <AddItem handleAdd={handleAddGrocery} />
       <ItemList
         groceries={groceries}

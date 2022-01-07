@@ -15,7 +15,7 @@ export default function AddItem({ handleAdd }) {
         placeholder="Enter Grocery Here"
         value={food}
         onChange={(event) => setFood(event.target.value)}
-      />
+      />{' '}
       <button type="submit">
         Add to List{' '}
         <span role="img" aria-label="cart">

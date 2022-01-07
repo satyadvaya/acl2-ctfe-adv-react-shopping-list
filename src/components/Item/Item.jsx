@@ -12,7 +12,9 @@ export default function Item({
     groceryContent = (
       <>
         <input
+          type="text"
           value={grocery.food}
+          aria-label={`edit ${grocery.food} input`}
           onChange={(event) => {
             handleUpdateGrocery({
               ...grocery,
@@ -20,17 +22,30 @@ export default function Item({
             });
           }}
         />
-
-        <button onClick={() => setIsEditing(false)}>Save</button>
+        <button
+          type="button"
+          aria-label={`save ${grocery.food} button`}
+          onClick={() => setIsEditing(false)}
+        >
+          Save
+        </button>
       </>
     );
   } else {
     groceryContent = (
       <>
-        <p role="img" aria-label={grocery.food}>
+        <span
+          style={{ textDecoration: grocery.done ? 'line-through' : null }}
+          role="img"
+          aria-label={grocery.food}
+        >
           {grocery.food}
-        </p>
-        <button type="button" onClick={() => setIsEditing(true)}>
+        </span>{' '}
+        <button
+          type="button"
+          aria-label={`edit ${grocery.food} button`}
+          onClick={() => setIsEditing(true)}
+        >
           Edit
         </button>
       </>
@@ -47,9 +62,13 @@ export default function Item({
             done: event.target.checked,
           });
         }}
-      />
-      {groceryContent}
-      <button type="button" onClick={() => handleDeleteGrocery(grocery.id)}>
+      />{' '}
+      {groceryContent}{' '}
+      <button
+        type="button"
+        aria-label={`delete ${grocery.food} button`}
+        onClick={() => handleDeleteGrocery(grocery.id)}
+      >
         Delete
       </button>
     </div>
